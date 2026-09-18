@@ -6,7 +6,38 @@ SIM ?= icarus
 FST ?= -fst # Use more efficient FST format
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = project.v
+PROJECT_SOURCES = TT_processor_chip.v \
+                  top_1_2.v \
+                  i2c_slave_mmio_1_2.v \
+                  mmio_decoder_1_2.v \
+                  instruction_memory_1_2.v \
+                  data_memory_1_2.v \
+                  reg_file_1_2.v \
+                  ALU_2_1_2.v \
+                  BHT_3_1_2.v \
+                  BTB_3_1_2.v \
+                  EX_MEM_2_1_2.v \
+                  Flushing_unit_3_1_2.v \
+                  Forward_rs_2_1_2.v \
+                  Forwarding_unit_2_1_2.v \
+                  ID_EX_register_2_1_2.v \
+                  IF_ID_register_1_2.v \
+                  M_WB_Register_1_1_2.v \
+                  PHT_2_1_2.v \
+                  Pc_1_2.v \
+                  Sign_extender_1_1_2.v \
+                  Write_back_mux_1_1_2.v \
+                  Xor_result_1_1_2.v \
+                  branching_unit_3_1_2.v \
+                  comparator_2_1_2.v \
+                  control_unit_2_1_2.v \
+                  forward_rt_2_1_2.v \
+                  mux_1_1_1_2.v \
+                  mux_1_execution_1_1_2.v \
+                  mux_2_1_1_2.v \
+                  mux_2_execution_2_1_2.v \
+                  mux_3_execution_1_1_2.v \
+                  stalling_unit_1_1_2.v
 
 ifneq ($(GATES),yes)
 
