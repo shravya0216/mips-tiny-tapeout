@@ -1,29 +1,57 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "MIPS Processor with I2C MMIO"
+  author:       "Shravya Shetty , Awtansh Dixit , Yash Kamat"
+  discord:      ""
+  description:  "A 5-stage MIPS processor with an I2C memory-mapped interface."
+  language:     "Verilog"
+  clock_hz:     0
 
-  # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  # How many tiles your design occupies?
+  tiles: "1x1"
 
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  # Top-level module
+  top_module:  "tt_um_shravya0216_mips"
 
-  # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
-  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  # Source files
   source_files:
-    - "project.v"
+    - "TT_processor_chip.v"
+    - "top_1_2.v"
+    - "i2c_slave_mmio_1_2.v"
+    - "mmio_decoder_1_2.v"
+    - "instruction_memory_1_2.v"
+    - "data_memory_1_2.v"
+    - "reg_file_1_2.v"
+    - "ALU_2_1_2.v"
+    - "BHT_3_1_2.v"
+    - "BTB_3_1_2.v"
+    - "EX_MEM_2_1_2.v"
+    - "Flushing_unit_3_1_2.v"
+    - "Forward_rs_2_1_2.v"
+    - "Forwarding_unit_2_1_2.v"
+    - "ID_EX_register_2_1_2.v"
+    - "IF_ID_register_1_2.v"
+    - "M_WB_Register_1_1_2.v"
+    - "PHT_2_1_2.v"
+    - "Pc_1_2.v"
+    - "Sign_extender_1_1_2.v"
+    - "Write_back_mux_1_1_2.v"
+    - "Xor_result_1_1_2.v"
+    - "branching_unit_3_1_2.v"
+    - "comparator_2_1_2.v"
+    - "control_unit_2_1_2.v"
+    - "forward_rt_2_1_2.v"
+    - "mux_1_1_1_2.v"
+    - "mux_1_execution_1_1_2.v"
+    - "mux_2_1_1_2.v"
+    - "mux_2_execution_2_1_2.v"
+    - "mux_3_execution_1_1_2.v"
+    - "stalling_unit_1_1_2.v"
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+# The pinout of your project.
 pinout:
   # Inputs
-  ui[0]: ""
+  ui[0]: "SCL"
   ui[1]: ""
   ui[2]: ""
   ui[3]: ""
@@ -33,7 +61,7 @@ pinout:
   ui[7]: ""
 
   # Outputs
-  uo[0]: ""
+  uo[0]: "DONE_LED"
   uo[1]: ""
   uo[2]: ""
   uo[3]: ""
@@ -43,7 +71,7 @@ pinout:
   uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: ""
+  uio[0]: "SDA"
   uio[1]: ""
   uio[2]: ""
   uio[3]: ""
