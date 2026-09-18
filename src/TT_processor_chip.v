@@ -15,7 +15,7 @@
 //                 uio_oe/uo_out assignments below regardless of ena's state
 //////////////////////////////////////////////////////////////////////////////////
 
-module TT_processor_chip (
+module tt_um_shravya0216_mips (
     input  wire [7:0] ui_in,
     output wire [7:0] uo_out,
     input  wire [7:0] uio_in,
