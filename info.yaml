@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "MIPS Processor with I2C MMIO"
-  author:       "Shravya Shetty , Awtansh Dixit , Yash Kamat"
+  author:       "Shravya Shetty, Awtansh Dixit, Yash Kamat"
   discord:      ""
   description:  "A 5-stage MIPS processor with an I2C memory-mapped interface."
   language:     "Verilog"
