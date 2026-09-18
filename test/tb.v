@@ -2,7 +2,7 @@
 // =============================================================================
 // TT WRAPPER + FULL PROCESSOR: EXHAUSTIVE SELF-CHECKING TESTBENCH
 //
-// Targets tt_um_yourname (the Tiny Tapeout harness), NOT top.v directly --
+// Targets tt_um_shravya0216_mips (the Tiny Tapeout harness), NOT top.v directly --
 // this is the actual interface that gets fabricated, so it's the one that
 // needs to be proven correct end-to-end: ui_in/uo_out/uio_*/ena/rst_n in,
 // nothing but $display PASS/FAIL/NOTE lines out. No waveform viewing
