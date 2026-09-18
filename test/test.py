@@ -8,6 +8,6 @@ async def test_project(dut):
 
     # tb.v contains the complete self-checking test suite.
     # Wait long enough for the Verilog testbench to finish.
-   await Timer(1, unit="s")
+    await Timer(1, unit="sec")
 
     dut._log.info("Exhaustive Verilog testbench completed")
