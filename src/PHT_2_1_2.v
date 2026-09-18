@@ -4,7 +4,7 @@
 // Engineer: 
 // 
 // Create Date: 22.07.2026 10:30:47
-// Design Name: 
+// Design Name: PHT
 // Module Name: PHT
 // Project Name: 
 // Target Devices: 
@@ -19,29 +19,39 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module PHT(
-input clk,
-input [3:0] rd_addr,//this will be connected to PC_out[5:2]
-input PHT_write_control,//this is connecetd to output of branching unit 
-input [3:0] ID_EX_PHT_wr_addr,//this is connected to the PC[5:2] that is in execution unit flowed from instruction fetch stage or in simple terms ID/EX.PC[5:2]
-input PHT_write_data,//this is connected to the zero status of the ALU from execution unit 
-input rst,
-output [3:0] PHT_rd_data//used as input in Xor module 
-    );
-    integer i;
-    reg [3:0] PHT [15:0] ;//first size then depth 
-    assign PHT_rd_data = PHT[rd_addr];
-    always @ (posedge clk or posedge rst)//async reset 
+    input clk,
+    input [3:0] rd_addr,              // connected to PC_out[5:2]
+    input PHT_write_control,          // connected to branching unit output
+    input [3:0] ID_EX_PHT_wr_addr,    // connected to PC[5:2] in execution stage
+    input PHT_write_data,             // connected to zero status of ALU
+    input rst,
+    output [3:0] PHT_rd_data          // used as input in Xor module
+);
+
+    // 16 entries × 4 bits = 64 bits total
+    reg [63:0] PHT;
+
+    // Read one 4-bit entry
+    assign PHT_rd_data = PHT[rd_addr * 4 +: 4];
+
+    always @ (posedge clk or posedge rst)
     begin
-    if(rst)
-    begin
-    for(i=0;i<=15;i=i+1)
-    PHT[i]<=4'b0000;
+        if (rst)
+        begin
+            PHT <= 64'b0;
+        end
+        else if (PHT_write_control)
+        begin
+            // Preserve original behavior:
+            // shift the 4-bit counter and insert new outcome as LSB
+            PHT[ID_EX_PHT_wr_addr * 4 +: 4] <= {
+                PHT[ID_EX_PHT_wr_addr * 4 + 2],
+                PHT[ID_EX_PHT_wr_addr * 4 + 1],
+                PHT[ID_EX_PHT_wr_addr * 4 + 0],
+                PHT_write_data
+            };
+        end
     end
-    else if(PHT_write_control)
-    begin
-    PHT[ID_EX_PHT_wr_addr]<={PHT[ID_EX_PHT_wr_addr][2],PHT[ID_EX_PHT_wr_addr][1],PHT[ID_EX_PHT_wr_addr][0],PHT_write_data};
-    end
-    end
+
 endmodule
